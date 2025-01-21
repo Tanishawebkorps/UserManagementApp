@@ -281,6 +281,7 @@ public class Admin {
 
 			default:
 				System.out.println("invalid choice");
+				task(a);
 				break;
 			}
 		} catch (Exception exc) {
