@@ -1,12 +1,10 @@
 package com.service;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
 import com.criteria.*;
 import com.exception.UserNotFoundException;
 import com.pojo.User;
@@ -47,13 +45,19 @@ public class Admin {
 				}
 				phone.add(p);
 			}
-
 			User user = new User(name, email, phone);
 			usersMap.put(email, user);
 			System.out.println("User created successfully.");
 			task(a);
-		} catch (Exception exc) {
+		} 
+		catch (Exception exc) {
 			System.out.println(exc.getMessage());
+			System.out.println("enter 1 for continue or other for going to admin pannel :");
+			String c ="";
+			c=sc.next();
+			if (c.equals("1")) {
+				addUser(a);
+			}
 			task(a);
 		}
 	}
@@ -73,6 +77,11 @@ public class Admin {
 			task(a);
 		} catch (Exception exc) {
 			System.out.println(exc.getMessage());
+			System.out.println("enter 1 for continue or other for going to admin pannel :");
+			String c = sc.next();
+			if (c.equals("1")) {
+				deleteUser(a);
+			}
 			task(a);
 		}
 	}
@@ -92,6 +101,11 @@ public class Admin {
 			task(a);
 		} catch (Exception exc) {
 			System.out.println(exc.getMessage());
+			System.out.println("enter 1 for continue or  other for going to admin pannel :");
+			String c = sc.next();
+			if (c.equals("1")) {
+				getUser(a);
+			}
 			task(a);
 		}
 	}
@@ -121,6 +135,11 @@ public class Admin {
 			task(a);
 		} catch (Exception exc) {
 			System.out.println(exc.getMessage());
+			System.out.println("enter 1 for continue or  other for going to admin pannel :");
+			String c = sc.next();
+			if (c.equals("1")) {
+				updateUserName(a);
+			}
 			task(a);
 		}
 	}
@@ -152,7 +171,7 @@ public class Admin {
 				}
 				newphone.add(phone);
 			}
-			
+
 			for (String p : newphone) {
 				user.getPhoneNumbers().add(p);
 			}
@@ -162,9 +181,15 @@ public class Admin {
 			task(a);
 		} catch (Exception exc) {
 			System.out.println(exc.getMessage());
+			System.out.println("enter 1 for continue or other for going to admin pannel :");
+			String c = sc.next();
+			if (c.equals("1")) {
+				addUserNum(a);
+			}
 			task(a);
 		}
 	}
+
 	public void updateUserNum(Admin a) throws Exception, UserNotFoundException {
 		try {
 			System.out.print("Enter email of user to update: ");
@@ -192,18 +217,24 @@ public class Admin {
 				}
 				newphone.add(p);
 			}
-			
+
 			user.setPhoneNumbers(newphone);
 			usersMap.put(email, user);
 			System.out.println("User Number updated successfully.");
 			task(a);
 		} catch (Exception exc) {
 			System.out.println(exc.getMessage());
+			System.out.println("enter 1 for continue or other for going to admin pannel :");
+			String c = sc.next();
+			if (c.equals("1")) {
+				updateUserNum(a);
+			}
 			task(a);
 		}
 	}
+
 	public static void task(Admin a) {
-		Scanner scanner=new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		try {
 			System.out.println("\n--- Admin Panel ---");
 			System.out.println("1. Create User");
@@ -221,7 +252,7 @@ public class Admin {
 			} catch (InputMismatchException exc) {
 				throw new Exception("please enter number only");
 			}
-			
+
 			switch (choice) {
 			case 1:
 				a.addUser(a);
@@ -247,15 +278,14 @@ public class Admin {
 			case 8:
 				System.out.println("Exit....");
 				System.exit(0);
-				
+
 			default:
 				System.out.println("invalid choice");
 				break;
 			}
-		} 
-		catch (Exception exc) {
+		} catch (Exception exc) {
 			System.out.println(exc.getMessage());
 			task(a);
-	}
+		}
 	}
 }
